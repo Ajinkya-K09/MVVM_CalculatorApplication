@@ -4,9 +4,99 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM_CalculatorApplication"
+        xmlns:vm="clr-namespace:MVVM_CalculatorApplication.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <vm:CalculatorViewModel x:Key="ViewModel"/>
+        
+        <Style x:Key="18SizeHeadertTxtBlkStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style x:Key="18SizeTextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style x:Key="PerimetralButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        
+    </Window.Resources>
+    <Grid Margin="10" DataContext="{StaticResource ViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="LblFirstNumber" Grid.Row="0"
+                   Text="Enter First Number : "
+                   Style="{StaticResource 18SizeHeadertTxtBlkStyle}"/>
+        <TextBox x:Name="InputFirstNumber"
+                 Grid.Row="0" Grid.Column="1"
+                 Text="{Binding CalculatorModel.FirstNumber, Mode=TwoWay,
+            UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalAlignment="Left"
+                 MinWidth="200"
+                 Style="{StaticResource 18SizeTextBoxStyle}"
+                 />
+
+        <TextBlock x:Name="LblSecondNumber" Grid.Row="2"
+                   Text="Enter Second Number : "
+                   Style="{StaticResource 18SizeHeadertTxtBlkStyle}"/>
+        <TextBox x:Name="InputSecondNumber"
+                 Grid.Row="2" Grid.Column="1"
+                 Text="{Binding CalculatorModel.SecondNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalAlignment="Left"
+                 MinWidth="200"
+                 Style="{StaticResource 18SizeTextBoxStyle}"/>
+
+        <UniformGrid x:Name="ArithmaticOperationsLayoutGrid"
+                    Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                     Columns="4"
+                    Margin="20">
+            <Button x:Name="AddOperation"
+                    Content="Add"
+                    Command="{Binding PerformArithmaticOperation}"
+                    Style="{StaticResource PerimetralButtonStyle}"/>
+
+            <Button x:Name="SubtractOperation"
+                    Content="Sub"
+                    Style="{StaticResource PerimetralButtonStyle}"/>
+
+            <Button x:Name="MultiplyOperation"
+                    Content="Mul"
+                    Style="{StaticResource PerimetralButtonStyle}"/>
+
+            <Button x:Name="DivisionOperation"
+                    Content="Div"
+                    Style="{StaticResource PerimetralButtonStyle}"/>
+        </UniformGrid>
+
+        <StackPanel x:Name="OutPutWindow"
+                    Grid.Row="5" Grid.Column="0">
+
+            <TextBlock Text="Output Window"
+                       FontSize="20"/>
+
+            <TextBlock Text="{Binding CalculatorModel.Result}"
+                       FontSize="20"/>
+
+        </StackPanel>
 
     </Grid>
 </Window>
