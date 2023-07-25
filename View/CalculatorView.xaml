@@ -71,19 +71,22 @@
                     Margin="20">
             <Button x:Name="AddOperation"
                     Content="Add"
-                    Command="{Binding PerformArithmaticOperation}"
+                    Command="{Binding PerformAddition}"
                     Style="{StaticResource PerimetralButtonStyle}"/>
 
             <Button x:Name="SubtractOperation"
                     Content="Sub"
+                    Command="{Binding PerformSubtraction}"
                     Style="{StaticResource PerimetralButtonStyle}"/>
 
             <Button x:Name="MultiplyOperation"
                     Content="Mul"
+                    Command="{Binding PerformMultiplication}"
                     Style="{StaticResource PerimetralButtonStyle}"/>
 
             <Button x:Name="DivisionOperation"
                     Content="Div"
+                    Command="{Binding PerformDivision}"
                     Style="{StaticResource PerimetralButtonStyle}"/>
         </UniformGrid>
 

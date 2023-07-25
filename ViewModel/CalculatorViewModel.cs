@@ -4,6 +4,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,12 +16,21 @@ namespace MVVM_CalculatorApplication.ViewModel
         public CalculatorViewModel()
         {
             CalculatorModel = new CalculatorModel();
-            PerformArithmaticOperation = new RelayCommand(HadlePerformAddition, HandleCanPerformOperations);
+            PerformAddition = new RelayCommand(HadlePerformAddition, HandleCanPerformOperations);
+            PerformSubtraction = new RelayCommand(HandleSubtraction, HandleCanPerformOperations);
+            PerformMultiplication = new RelayCommand(HandleMultiplication, HandleCanPerformOperations);
+            PerformDivision = new RelayCommand(HandleDivision, HandleCanPerformOperations);
         }
 
         public CalculatorModel CalculatorModel { get; set; }
 
-        public ICommand PerformArithmaticOperation { get; set; }
+        public ICommand PerformAddition { get; set; }
+
+        public ICommand PerformSubtraction { get; set; }
+
+        public ICommand PerformMultiplication { get; set; }
+
+        public ICommand PerformDivision { get; set; }
 
         private bool HandleCanPerformOperations(object arg)
         {
@@ -35,6 +45,21 @@ namespace MVVM_CalculatorApplication.ViewModel
         private void HadlePerformAddition(object obj)
         {
             CalculatorModel.Result = CalculatorModel.FirstNumber + CalculatorModel.SecondNumber;
+        }
+
+        private void HandleSubtraction(object obj)
+        {
+            CalculatorModel.Result = CalculatorModel.FirstNumber - CalculatorModel.SecondNumber;
+        }
+
+        private void HandleMultiplication(object obj)
+        {
+            CalculatorModel.Result = CalculatorModel.FirstNumber * CalculatorModel.SecondNumber;
+        }
+
+        private void HandleDivision(object obj)
+        {
+            CalculatorModel.Result = CalculatorModel.FirstNumber / CalculatorModel.SecondNumber;
         }
     }
 }
