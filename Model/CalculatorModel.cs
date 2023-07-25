@@ -9,11 +9,11 @@ namespace MVVM_CalculatorApplication.Model
 {
     public class CalculatorModel : INotifyPropertyChanged
     {
-        private double m_firstNumber;
-        private double m_secondNumber;
+        private string m_firstNumber;
+        private string m_secondNumber;
         private double m_result;
 
-        public double FirstNumber
+        public string FirstNumber
         {
             get
             {
@@ -26,7 +26,7 @@ namespace MVVM_CalculatorApplication.Model
             }
         }
 
-        public double SecondNumber
+        public string SecondNumber
         {
             get
             {
@@ -35,6 +35,7 @@ namespace MVVM_CalculatorApplication.Model
             set
             {
                 m_secondNumber = value;
+                RaisePropertyChanged(nameof(SecondNumber));
             }
         }
 

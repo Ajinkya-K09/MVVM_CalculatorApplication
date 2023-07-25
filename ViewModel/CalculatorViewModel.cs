@@ -34,7 +34,7 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private bool HandleCanPerformOperations(object arg)
         {
-            if (CalculatorModel.FirstNumber == 0 || CalculatorModel.SecondNumber == 0)
+            if (string.IsNullOrEmpty(CalculatorModel.FirstNumber) || string.IsNullOrEmpty(CalculatorModel.SecondNumber))
             {
                 return false;
             }
@@ -44,22 +44,22 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private void HadlePerformAddition(object obj)
         {
-            CalculatorModel.Result = CalculatorModel.FirstNumber + CalculatorModel.SecondNumber;
+            CalculatorModel.Result = (Convert.ToDouble(CalculatorModel.FirstNumber) + Convert.ToDouble(CalculatorModel.SecondNumber));
         }
 
         private void HandleSubtraction(object obj)
         {
-            CalculatorModel.Result = CalculatorModel.FirstNumber - CalculatorModel.SecondNumber;
+            CalculatorModel.Result = Convert.ToDouble(CalculatorModel.FirstNumber) - Convert.ToDouble(CalculatorModel.SecondNumber);
         }
 
         private void HandleMultiplication(object obj)
         {
-            CalculatorModel.Result = CalculatorModel.FirstNumber * CalculatorModel.SecondNumber;
+            CalculatorModel.Result = Convert.ToDouble(CalculatorModel.FirstNumber) * Convert.ToDouble(CalculatorModel.SecondNumber);
         }
 
         private void HandleDivision(object obj)
         {
-            CalculatorModel.Result = CalculatorModel.FirstNumber / CalculatorModel.SecondNumber;
+            CalculatorModel.Result = Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber);
         }
     }
 }
