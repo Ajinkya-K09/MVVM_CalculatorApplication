@@ -1,3 +1,1 @@
 ﻿This is demo project file, this project is uploaded to ensure safe working of git.
-ProjectName = MVVM_CalculatorApplication
-Backend Stack = C#
