@@ -54,7 +54,9 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private void HandleDivision(object obj)
         {
-            CalculatorModel.Result = Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber);
+            var t = Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber);
+            var g = Math.Round(t, 2);
+            CalculatorModel.Result = Math.Ceiling((Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber)));
         }
     }
 }

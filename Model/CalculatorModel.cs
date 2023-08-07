@@ -81,23 +81,19 @@ namespace MVVM_CalculatorApplication.Model
 
                 if (propertyName == nameof(FirstNumber))
                 {
-                    switch (propertyName)
+                    if (!string.IsNullOrEmpty(FirstNumber))
                     {
-                        case "FirstNumber":
-                            if (!string.IsNullOrEmpty(FirstNumber))
-                            {
                         try
                         {
                             var isFirstNumberValid = double.Parse(FirstNumber);
                             IsFirstNumberValid = true;
-                            }
+                        }
                         catch (Exception)
-                            {
+                        {
                             IsFirstNumberValid = false;
                             HasInputError = true;
                             return result = "Invalid Inputs";
-                            }
-                            break;
+                        }
                     }
                 }
 
@@ -111,9 +107,9 @@ namespace MVVM_CalculatorApplication.Model
                             IsSecondNumberValid = true;
                         }
                         catch (Exception)
-                {
+                        {
                             IsSecondNumberValid = false;
-                    HasInputError = true;
+                            HasInputError = true;
                             return result = "Invalid Inputs";
                         }
                     }
