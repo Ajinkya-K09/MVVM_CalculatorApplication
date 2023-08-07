@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MVVM_CalculatorApplication"
         xmlns:vm="clr-namespace:MVVM_CalculatorApplication.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -24,6 +23,14 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)/ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         
@@ -49,7 +56,7 @@
         <TextBox x:Name="InputFirstNumber"
                  Grid.Row="0" Grid.Column="1"
                  Text="{Binding CalculatorModel.FirstNumber, Mode=TwoWay,
-            UpdateSourceTrigger=PropertyChanged}"
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  HorizontalAlignment="Left"
                  MinWidth="200"
                  Style="{StaticResource 18SizeTextBoxStyle}"
@@ -60,7 +67,7 @@
                    Style="{StaticResource 18SizeHeadertTxtBlkStyle}"/>
         <TextBox x:Name="InputSecondNumber"
                  Grid.Row="2" Grid.Column="1"
-                 Text="{Binding CalculatorModel.SecondNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding CalculatorModel.SecondNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  HorizontalAlignment="Left"
                  MinWidth="200"
                  Style="{StaticResource 18SizeTextBoxStyle}"/>
