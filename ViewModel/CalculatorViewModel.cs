@@ -1,6 +1,7 @@
 ﻿using MVVM_CalculatorApplication.Command;
 using MVVM_CalculatorApplication.Model;
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace MVVM_CalculatorApplication.ViewModel
@@ -28,7 +29,7 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private bool HandleCanPerformOperations(object arg)
         {
-            if (string.IsNullOrEmpty(CalculatorModel.FirstNumber) || string.IsNullOrEmpty(CalculatorModel.SecondNumber))
+            if (CalculatorModel.HasInputError || string.IsNullOrEmpty(CalculatorModel.FirstNumber) || string.IsNullOrEmpty(CalculatorModel.SecondNumber))
             {
                 return false;
             }
@@ -53,7 +54,7 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private void HandleDivision(object obj)
         {
-            CalculatorModel.Result = Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber);
+            CalculatorModel.Result = Math.Round((Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber)), 2);
         }
     }
 }
