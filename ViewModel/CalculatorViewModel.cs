@@ -1,7 +1,6 @@
 ﻿using MVVM_CalculatorApplication.Command;
 using MVVM_CalculatorApplication.Model;
 using System;
-using System.ComponentModel;
 using System.Windows.Input;
 
 namespace MVVM_CalculatorApplication.ViewModel
