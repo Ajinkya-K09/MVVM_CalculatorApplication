@@ -25,14 +25,13 @@
             <Setter Property="FontWeight" Value="Medium"/>
         </Style>
 
-        <Style TargetType="TextBox">
+        <Style TargetType="TextBox" x:Key="ToolTipErrorKey" BasedOn="{StaticResource 18SizeTextBoxStyle}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)/ErrorContent}"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-
 
     </Window.Resources>
     <Grid Margin="10" DataContext="{StaticResource ViewModel}">
@@ -59,8 +58,7 @@
             UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  HorizontalAlignment="Left"
                  MinWidth="200"
-                 Style="{StaticResource 18SizeTextBoxStyle}"
-                 />
+                 Style="{StaticResource ToolTipErrorKey}"/>
 
         <TextBlock x:Name="LblSecondNumber" Grid.Row="2"
                    Text="Enter Second Number : "
@@ -70,7 +68,7 @@
                  Text="{Binding CalculatorModel.SecondNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  HorizontalAlignment="Left"
                  MinWidth="200"
-                 Style="{StaticResource 18SizeTextBoxStyle}"/>
+                 Style="{StaticResource ToolTipErrorKey}"/>
 
         <UniformGrid x:Name="ArithmaticOperationsLayoutGrid"
                     Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
