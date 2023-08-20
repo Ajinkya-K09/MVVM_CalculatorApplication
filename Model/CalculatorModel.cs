@@ -88,7 +88,7 @@ namespace MVVM_CalculatorApplication.Model
                         {
                             IsFirstNumberValid = false;
                             HasInputError = true;
-                            return result = "Invalid Inputs";
+                            return "Invalid Inputs, only numeric values allowed";
                         }
                     }
                 }
@@ -106,7 +106,7 @@ namespace MVVM_CalculatorApplication.Model
                         {
                             IsSecondNumberValid = false;
                             HasInputError = true;
-                            return result = "Invalid Inputs";
+                            return "Invalid Inputs, only numeric values allowed";
                         }
                     }
                 }
