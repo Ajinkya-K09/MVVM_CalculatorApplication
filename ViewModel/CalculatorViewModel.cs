@@ -10,13 +10,32 @@ namespace MVVM_CalculatorApplication.ViewModel
         public CalculatorViewModel()
         {
             CalculatorModel = new CalculatorModel();
+            ClearTextFields = new RelayCommand(HandleClearFields, HandleCanClearFields);
             PerformAddition = new RelayCommand(HadlePerformAddition, HandleCanPerformOperations);
             PerformSubtraction = new RelayCommand(HandleSubtraction, HandleCanPerformOperations);
             PerformMultiplication = new RelayCommand(HandleMultiplication, HandleCanPerformOperations);
             PerformDivision = new RelayCommand(HandleDivision, HandleCanPerformOperations);
         }
 
+        private bool HandleCanClearFields(object arg)
+        {
+            if (!string.IsNullOrEmpty(CalculatorModel.FirstNumber) || !string.IsNullOrEmpty(CalculatorModel.SecondNumber))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void HandleClearFields(object obj)
+        {
+            CalculatorModel.FirstNumber = string.Empty;
+            CalculatorModel.SecondNumber = string.Empty;
+        }
+
         public CalculatorModel CalculatorModel { get; set; }
+
+        public ICommand ClearTextFields { get; set; }
 
         public ICommand PerformAddition { get; set; }
 
@@ -28,7 +47,7 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private bool HandleCanPerformOperations(object arg)
         {
-            if (string.IsNullOrEmpty(CalculatorModel.FirstNumber) || string.IsNullOrEmpty(CalculatorModel.SecondNumber))
+            if (CalculatorModel.HasInputError || string.IsNullOrEmpty(CalculatorModel.FirstNumber) || string.IsNullOrEmpty(CalculatorModel.SecondNumber))
             {
                 return false;
             }
@@ -53,7 +72,7 @@ namespace MVVM_CalculatorApplication.ViewModel
 
         private void HandleDivision(object obj)
         {
-            CalculatorModel.Result = Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber);
+            CalculatorModel.Result = Math.Round((Convert.ToDouble(CalculatorModel.FirstNumber) / Convert.ToDouble(CalculatorModel.SecondNumber)), 2);
         }
     }
 }
